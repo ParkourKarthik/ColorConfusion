@@ -62,7 +62,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resetGameColors() {
-        var involveColors: List<ColorMap> = listOf(colorMaps.random(), colorMaps.random())
+        val randomColorMap1 = colorMaps.random()
+        val randomColorMap2 = colorMaps.filter { it != randomColorMap1 }.random()
+        val involveColors = listOf(randomColorMap1, randomColorMap2)
         setWordAndColor(involveColors)
         setQueryText(involveColors)
         setButtonColors(involveColors)

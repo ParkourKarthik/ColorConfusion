@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textQuery: TextView
     private lateinit var list: List<Button>
     private lateinit var colorMaps: List<ColorMap>
+    private lateinit var refreshBtn: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         scoreLabel = findViewById(R.id.textWins)
         countLabel = findViewById(R.id.textPlayCount)
         textQuery = findViewById(R.id.textQuery)
+        refreshBtn = findViewById(R.id.fabRevert)
         setupGame()
-
     }
 
     private fun refreshScoreBar() {
@@ -58,7 +60,17 @@ class MainActivity : AppCompatActivity() {
                 resetGameColors()
             }
         }
+        refreshBtn.setOnClickListener{
+            resetGameColors()
+            resetScoreBar()
+        }
         resetGameColors()
+    }
+
+    private fun resetScoreBar() {
+        counts = 0
+        score = 0
+        refreshScoreBar()
     }
 
     private fun resetGameColors() {
